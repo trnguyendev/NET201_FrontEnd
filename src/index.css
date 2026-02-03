@@ -1,4 +1,35 @@
 .bg-sport-main {
-  background-color: #104b59 !important; /* Màu xanh đậm thể thao */
+  background-color: #104b59 !important;
   color: white;
+}
+
+body {
+  background: rgb(242, 242, 242);
+}
+
+:root {
+  /* 1. Màu Primary của bạn */
+  --bs-primary: #104b59;
+  --bs-primary-rgb: 16, 75, 89; /* Đã cập nhật đúng mã RGB cho #104b59 */
+
+  /* 2. Màu nhấn (Secondary) - Cam hổ phách để nổi bật trên nền Teal */
+  --bs-secondary: #f2a154;
+  --bs-secondary-rgb: 242, 161, 84;
+}
+
+/* Tùy chỉnh nút bấm để trông hiện đại hơn */
+.btn-primary {
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-bg: #0d3d49; /* Đậm hơn màu gốc 10% khi hover */
+  --bs-btn-hover-border-color: #0d3d49;
+  border-radius: 8px; /* Bo góc hiện đại cho shop thể thao */
+  transition: all 0.3s ease;
+}
+
+.btn-secondary {
+  --bs-btn-bg: var(--bs-secondary);
+  --bs-btn-border-color: var(--bs-secondary);
+  color: #fff;
+  font-weight: 600;
 }

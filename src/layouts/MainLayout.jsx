@@ -12,7 +12,6 @@ const MainLayout = () => {
           <Outlet />
         </div>
       </main>
-
       <Footer />
     </div>
   );

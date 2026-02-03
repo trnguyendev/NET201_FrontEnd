@@ -1,10 +1,12 @@
+import { Link, NavLink } from 'react-router-dom';
+
 const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-sport-main text-white py-2" data-bs-theme="dark">
       <div className="container">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           TN Sport
-        </a>
+        </Link>
 
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
           <span className="navbar-toggler-icon"></span>
@@ -13,19 +15,19 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" href="#">
+              <a className="nav-link active" to="/">
                 Trang chủ
               </a>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <NavLink className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                 Sản phẩm
-              </a>
+              </NavLink>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <Link className="dropdown-item" href="#" to="/products">
                     Quần áo
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a className="dropdown-item" href="#">
@@ -38,14 +40,12 @@ const Header = () => {
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Dụng cụ
-                  </a>
+                  <a className="dropdown-item">Dụng cụ</a>
                 </li>
               </ul>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" to="/">
                 Đơn hàng của tôi
               </a>
             </li>
@@ -66,12 +66,12 @@ const Header = () => {
           </form>
 
           <div className="d-flex align-items-center gap-2 me-2">
-            <button className="btn btn-outline-light btn-sm px-3 rounded-2" to="login">
+            <Link className="btn btn-outline-light btn-sm px-3 rounded-2" to="login">
               Đăng nhập
-            </button>
-            <button className="btn btn-warning btn-sm px-3 rounded-2 fw-semibold" to="register">
+            </Link>
+            <Link className="btn btn-warning btn-sm px-3 rounded-2 fw-semibold" to="register">
               Đăng ký
-            </button>
+            </Link>
           </div>
         </div>
       </div>
