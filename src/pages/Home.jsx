@@ -4,6 +4,7 @@ import CategoryStrip from '@/components/home/CategoryStrip';
 import SidebarFilter from '@/components/product/SidebarFilter';
 import ProductCard from '@/components/product/ProductCard';
 import productService from '@/services/productService';
+import productHomeService from '@/services/productHomeService';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -14,7 +15,7 @@ const Home = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true); // Bắt đầu tải -> hiện loading
-        const data = await productService.getAllProducts();
+        const data = await productHomeService.getAllProducts();
         setProducts(data); // Lưu dữ liệu vào state
       } catch (err) {
         setError('Không thể tải danh sách sản phẩm!'); // Xử lý lỗi

@@ -1,11 +1,11 @@
 import axiosClient from '@/api/axiosClient';
 
-const productService = {
+const productHomeService = {
   getAllProducts: async () => {
-    const url = '/Products';
+    const url = '/Products/home';
     const response = await axiosClient.get(url);
     return response.data;
   }
 };
 
-export default productService;
+export default productHomeService;
