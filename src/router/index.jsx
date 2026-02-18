@@ -1,9 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import MainLayout from '@/layouts/MainLayout';
-import Home from '@/pages/Home';
-import Products from '@/pages/Products';
-import Login from '@/pages/Login';
-import Register from '@/pages/Register';
+import Home from '@/pages/user/Home';
+import Products from '@/pages/user/Products';
+import Login from '@/pages/user/Login';
+import Register from '@/pages/user/Register';
+import DefaultLayout from '@/layouts/AdminLayout';
 
 const AppRouter = () => {
   return (
@@ -22,6 +23,9 @@ const AppRouter = () => {
         {/* Trang đăng kí */}
         <Route path="register" element={<Register />} />
       </Route>
+
+      {/* ADMIN ROUTES */}
+      <Route path="/admin/*" element={<DefaultLayout />} />
     </Routes>
   );
 };
