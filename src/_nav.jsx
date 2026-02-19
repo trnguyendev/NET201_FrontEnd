@@ -42,7 +42,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Size',
-        to: '/admin/base/carousels'
+        to: '/admin/sizes'
       },
       {
         component: CNavItem,
