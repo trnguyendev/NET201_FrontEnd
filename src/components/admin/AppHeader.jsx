@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { CContainer, CDropdown, CDropdownItem, CDropdownMenu, CDropdownToggle, CHeader, CHeaderNav, CHeaderToggler, CNavLink, CNavItem, useColorModes } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 import { cilBell, cilContrast, cilEnvelopeOpen, cilList, cilMenu, cilMoon, cilSun } from '@coreui/icons';
-
-import { AppBreadcrumb } from './index';
 import { AppHeaderDropdown } from './header/index';
 
 const AppHeader = () => {
@@ -69,9 +67,6 @@ const AppHeader = () => {
           </li>
           <AppHeaderDropdown />
         </CHeaderNav>
-      </CContainer>
-      <CContainer className="px-4" fluid>
-        <AppBreadcrumb />
       </CContainer>
     </CHeader>
   );
