@@ -47,7 +47,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Màu',
-        to: '/admin/base/collapses'
+        to: '/admin/colors'
       },
       {
         component: CNavItem,
