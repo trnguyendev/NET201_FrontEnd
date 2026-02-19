@@ -26,6 +26,11 @@ const _nav = [
       },
       {
         component: CNavItem,
+        name: 'Thương hiệu',
+        to: '/admin/brands'
+      },
+      {
+        component: CNavItem,
         name: 'Sản phẩm',
         to: '/admin/base/breadcrumbs'
       },
