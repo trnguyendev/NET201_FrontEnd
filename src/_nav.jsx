@@ -32,7 +32,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Sản phẩm',
-        to: '/admin/base/breadcrumbs'
+        to: '/admin/products'
       },
       {
         component: CNavItem,

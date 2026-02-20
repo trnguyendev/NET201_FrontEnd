@@ -5,6 +5,8 @@ import Products from '@/pages/user/Products';
 import Login from '@/pages/user/Login';
 import Register from '@/pages/user/Register';
 import DefaultLayout from '@/layouts/AdminLayout';
+import ProductDetail from '@/pages/user/ProductDetail';
+import Cart from '@/pages/user/Cart';
 
 const AppRouter = () => {
   return (
@@ -17,11 +19,16 @@ const AppRouter = () => {
         {/* Trang danh sách sản phẩm */}
         <Route path="products" element={<Products />} />
 
+        {/* Chi tiết sản phẩm */}
+        <Route path="/details/:id" element={<ProductDetail />} />
+
         {/* Trang đăng nhập */}
         <Route path="login" element={<Login />} />
 
         {/* Trang đăng kí */}
         <Route path="register" element={<Register />} />
+
+        <Route path="/cart" element={<Cart />} />
       </Route>
 
       {/* ADMIN ROUTES */}
