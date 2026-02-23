@@ -21,11 +21,32 @@ const SidebarFilter = () => {
 
       {/* Tương lai bạn có thể map Brands vào đây */}
       <div className="mb-4">
-        <h6 className="fw-bold mb-3 text-secondary">Tình Trạng</h6>
+        <h6 className="fw-bold mb-3 text-secondary">Loại sản phẩm</h6>
         <div className="form-check custom-checkbox mb-2">
           <input className="form-check-input shadow-sm" type="checkbox" id="stock-1" />
           <label className="form-check-label ms-1 text-muted fw-medium" style={{ cursor: 'pointer' }} htmlFor="stock-1">
-            Sẵn hàng
+            Quần áo
+          </label>
+        </div>
+
+        <div className="form-check custom-checkbox mb-2">
+          <input className="form-check-input shadow-sm" type="checkbox" id="stock-1" />
+          <label className="form-check-label ms-1 text-muted fw-medium" style={{ cursor: 'pointer' }} htmlFor="stock-1">
+            Giày
+          </label>
+        </div>
+
+        <div className="form-check custom-checkbox mb-2">
+          <input className="form-check-input shadow-sm" type="checkbox" id="stock-1" />
+          <label className="form-check-label ms-1 text-muted fw-medium" style={{ cursor: 'pointer' }} htmlFor="stock-1">
+            Dụng cụ
+          </label>
+        </div>
+
+        <div className="form-check custom-checkbox mb-2">
+          <input className="form-check-input shadow-sm" type="checkbox" id="stock-1" />
+          <label className="form-check-label ms-1 text-muted fw-medium" style={{ cursor: 'pointer' }} htmlFor="stock-1">
+            Phụ kiện
           </label>
         </div>
       </div>

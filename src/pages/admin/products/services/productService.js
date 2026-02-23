@@ -4,7 +4,7 @@ const productService = {
   getAllProducts: async () => {
     const url = '/Products';
     const response = await axiosClient.get(url);
-    return response.data;
+    return response;
   },
 
   createProduct: async data => {
@@ -12,7 +12,7 @@ const productService = {
     const response = await axiosClient.post(url, data, {
       headers: { 'Content-Type': 'multipart/form-data' }
     });
-    return response.data;
+    return response;
   },
 
   updateProduct: async (id, data) => {
@@ -20,19 +20,19 @@ const productService = {
     const response = await axiosClient.put(url, data, {
       headers: { 'Content-Type': 'multipart/form-data' }
     });
-    return response.data;
+    return response;
   },
 
   deleteProduct: async id => {
     const url = `/Products/${id}`;
     const response = await axiosClient.delete(url);
-    return response.data;
+    return response;
   },
 
   getHomeProducts: async () => {
     const url = '/Products/home';
     const response = await axiosClient.get(url);
-    return response.data;
+    return response;
   }
 };
 

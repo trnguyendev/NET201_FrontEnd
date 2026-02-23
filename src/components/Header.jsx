@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../contexts/AuthContext';
+import { AuthContext } from '@/contexts/AuthContext';
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
@@ -18,9 +18,9 @@ const Header = () => {
   const displayName = userName.includes('@') ? userName.split('@')[0] : userName;
 
   return (
-    <nav className="navbar navbar-expand-lg bg-sport-main text-white py-2" data-bs-theme="dark">
+    <nav className="navbar navbar-expand-lg bg-sport-main py-2" data-bs-theme="dark">
       <div className="container">
-        <Link className="navbar-brand fw-bold fs-4" to="/">
+        <Link className="navbar-brand fw-bold fs-4 text-white" to="/">
           TN Sport
         </Link>
 
@@ -31,12 +31,12 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
             <li className="nav-item">
-              <Link className="nav-link active" to="/">
+              <Link className="nav-link active text-white" to="/">
                 Trang chủ
               </Link>
             </li>
             <li className="nav-item dropdown">
-              <NavLink className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">
+              <NavLink className="nav-link dropdown-toggle text-white" to="#" role="button" data-bs-toggle="dropdown">
                 Sản phẩm
               </NavLink>
               <ul className="dropdown-menu shadow-sm">
@@ -58,13 +58,13 @@ const Header = () => {
               </ul>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/orders">
+              <Link className="nav-link text-white" to="/orders">
                 Đơn hàng của tôi
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/cart">
-                <i className="bi bi-cart3 fs-5"></i> Giỏ hàng
+              <Link className="nav-link text-white" to="/cart">
+                <i className="bi bi-cart3 fs-5 white"></i> Giỏ hàng
               </Link>
             </li>
           </ul>

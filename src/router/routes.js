@@ -5,6 +5,7 @@ const Brand = React.lazy(() => import('@/pages/admin/brands/pages/Brand'));
 const Size = React.lazy(() => import('@/pages/admin/sizes/pages/Size'));
 const ProductColor = React.lazy(() => import('@/pages/admin/colors/pages/ProductColor'));
 const Product = React.lazy(() => import('@/pages/admin/products/pages/Product'));
+const Order = React.lazy(() => import('@/pages/admin/order/pages/OrderList'));
 
 const routes = [
   { path: '', exact: true, name: 'Home' },
@@ -13,7 +14,8 @@ const routes = [
   { path: 'brands', name: 'Brand', element: Brand },
   { path: 'sizes', name: 'Size', element: Size },
   { path: 'colors', name: 'ProductColor', element: ProductColor },
-  { path: 'products', name: 'Product', element: Product }
+  { path: 'products', name: 'Product', element: Product },
+  { path: 'orders', name: 'Order', element: Order }
 ];
 
 export default routes;

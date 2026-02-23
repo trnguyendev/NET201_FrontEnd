@@ -14,7 +14,7 @@ const Home = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const data = await productService.getHomeProducts(); // GỌI ĐÚNG HÀM getHomeProducts ĐÃ TẠO
+        const data = await productService.getHomeProducts();
         setProducts(data);
       } catch (err) {
         setError('Không thể tải danh sách sản phẩm. Vui lòng thử lại sau!');

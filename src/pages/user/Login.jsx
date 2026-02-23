@@ -24,7 +24,7 @@ const Login = () => {
       });
 
       // 2. Lấy Token từ phản hồi của API
-      const token = response.data.token;
+      const token = response.token;
 
       // 3. Nạp Token vào Trái tim hệ thống (AuthContext)
       login(token);

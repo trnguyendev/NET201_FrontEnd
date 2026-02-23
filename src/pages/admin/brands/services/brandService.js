@@ -4,7 +4,7 @@ const brandService = {
   getAllBrands: async () => {
     const url = '/Brands';
     const response = await axiosClient.get(url);
-    return response.data;
+    return response;
   },
 
   createBrand: async data => {
@@ -15,13 +15,13 @@ const brandService = {
         'Content-Type': 'multipart/form-data'
       }
     });
-    return response.data;
+    return response;
   },
 
   deleteBrand: async id => {
     const url = `/Brands/${id}`;
     const response = await axiosClient.delete(url);
-    return response.data;
+    return response;
   },
 
   updateBrand: async (id, data) => {
@@ -32,7 +32,7 @@ const brandService = {
         'Content-Type': 'multipart/form-data'
       }
     });
-    return response.data;
+    return response;
   }
 };
 

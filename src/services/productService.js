@@ -4,19 +4,19 @@ const productService = {
   getAllProducts: async () => {
     const url = '/Products';
     const response = await axiosClient.get(url);
-    return response.data;
+    return response;
   },
 
   getHomeProducts: async () => {
     const url = '/Products/home';
     const response = await axiosClient.get(url);
-    return response.data;
+    return response;
   },
 
   getProductDetail: async id => {
     const url = `/Products/detail/${id}`;
     const response = await axiosClient.get(url);
-    return response.data;
+    return response;
   }
 };
 

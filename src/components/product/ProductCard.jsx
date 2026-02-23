@@ -47,9 +47,6 @@ const ProductCard = ({ product }) => {
               <Link to={`/details/${product.id}`} className="btn btn-outline-primary flex-grow-1 fw-semibold">
                 Chi tiết
               </Link>
-              <button className="btn btn-primary" title="Thêm vào giỏ">
-                <i className="bi bi-cart-plus fs-5"></i>
-              </button>
             </div>
           </div>
         </div>
