@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosClient from '@/api/axiosClient'; // Đường dẫn tùy thuộc vào thư mục của bạn
+import axiosClient from '@/api/axiosClient';
 import { AuthContext } from '@/contexts/AuthContext';
 
 const Login = () => {
@@ -14,10 +14,9 @@ const Login = () => {
 
   const handleLogin = async e => {
     e.preventDefault();
-    setError(''); // Xóa lỗi cũ trước khi gửi request mới
+    setError('');
 
     try {
-      // 1. Gửi request lên Backend .NET
       const response = await axiosClient.post('/auth/login', {
         email: email,
         password: password
@@ -29,7 +28,7 @@ const Login = () => {
       // 3. Nạp Token vào Trái tim hệ thống (AuthContext)
       login(token);
 
-      alert('Đăng nhập thành công! 🚀');
+      alert('Đăng nhập thành công!');
 
       // 4. Chuyển hướng người dùng (Ví dụ: về Trang chủ)
       navigate('/');

@@ -1,4 +1,5 @@
 import { AppContent, AppSidebar, AppFooter, AppHeader } from '@/components/admin';
+import '../scss/style.scss';
 
 const AdminLayout = () => {
   return (

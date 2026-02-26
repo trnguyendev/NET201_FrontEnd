@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
 
 export const AuthContext = createContext();
@@ -7,7 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Mỗi lần load trang, kiểm tra xem có token trong localStorage không
     const token = localStorage.getItem('token');
     if (token) {
       try {
