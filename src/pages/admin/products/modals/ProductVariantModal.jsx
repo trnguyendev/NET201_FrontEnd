@@ -22,10 +22,11 @@ function ProductVariantModal({ show, handleClose, product }) {
   const fetchInitialData = useCallback(async () => {
     if (!product) return;
     try {
-      const [variantsData, sizesData, colorsData] = await Promise.all([variantService.getVariantsByProductId(product.id), sizeService.getAllSizes(), colorService.getAllProductColors()]);
-      setVariants(variantsData);
-      setSizes(sizesData);
-      setColors(colorsData);
+      const [variantsData, sizesData, colorsData] = await Promise.all([variantService.getVariantsByProductId(product.id), sizeService.getAllSizes(), colorService.getAllProductColors()]); // Thêm fallback || [] để tránh lỗi khi data bị null/undefined
+
+      setVariants(variantsData || []);
+      setSizes(sizesData || []);
+      setColors(colorsData || []);
     } catch (error) {
       toast.error('Lỗi khi tải dữ liệu biến thể');
     }
@@ -169,7 +170,7 @@ function ProductVariantModal({ show, handleClose, product }) {
         </div>
 
         {/* Bảng danh sách */}
-        <h6 className="fw-bold mb-2">Danh sách hiện có ({variants.length})</h6>
+        <h6 className="fw-bold mb-2">Danh sách hiện có ({variants?.length || 0})</h6>
         <Table bordered hover size="sm" className="text-center align-middle">
           <thead className="table-dark">
             <tr>
