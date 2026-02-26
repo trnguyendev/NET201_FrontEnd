@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import HeroCarousel from '@/components/home/HeroCarousel';
-import CategoryStrip from '@/components/home/CategoryStrip';
 import SidebarFilter from '@/components/product/SidebarFilter';
 import ProductCard from '@/components/product/ProductCard';
 import productService from '@/services/productService';
+import BrandSection from '@/components/home/BrandSection';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -28,10 +28,8 @@ const Home = () => {
 
   return (
     <main className="bg-light pb-5">
-      {' '}
-      {/* Thêm bg-light để làm nổi bật các Card màu trắng */}
       <HeroCarousel />
-      <CategoryStrip />
+      <BrandSection />
       <div className="container-fluid px-4 mt-4">
         <div className="row">
           <aside className="col-lg-3 d-none d-lg-block">
