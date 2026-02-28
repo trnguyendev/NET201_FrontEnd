@@ -1,10 +1,25 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '@/contexts/AuthContext';
+import categoryService from '@/services/categoryService';
 
 const Header = () => {
+  const [categories, setCategories] = useState([]);
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await categoryService.getAllCategories();
+        // Giả sử API trả về mảng: [{ id: 1, name: 'Quần áo' }, { id: 2, name: 'Giày' }]
+        setCategories(data);
+      } catch (error) {
+        console.error('Lỗi tải danh mục trên Header:', error);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -40,21 +55,19 @@ const Header = () => {
                 Sản phẩm
               </NavLink>
               <ul className="dropdown-menu shadow-sm">
-                <li>
-                  <Link className="dropdown-item" to="/products">
-                    Quần áo
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/shoes">
-                    Giày
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/accessories">
-                    Phụ kiện
-                  </Link>
-                </li>
+                {categories.length > 0 ? (
+                  categories.map(cat => (
+                    <li key={cat.id}>
+                      <Link className="dropdown-item" to={`/products/${cat.id}`}>
+                        {cat.name}
+                      </Link>
+                    </li>
+                  ))
+                ) : (
+                  <li>
+                    <span className="dropdown-item text-muted">Đang tải...</span>
+                  </li>
+                )}
               </ul>
             </li>
             <li className="nav-item">

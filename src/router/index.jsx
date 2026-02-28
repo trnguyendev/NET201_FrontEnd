@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import MainLayout from '@/layouts/MainLayout';
 import Home from '@/pages/user/Home';
-import Products from '@/pages/user/Products';
+import ProductsByCategory from '@/pages/user/ProductsByCategory';
 import Login from '@/pages/user/Login';
 import Register from '@/pages/user/Register';
 import DefaultLayout from '@/layouts/AdminLayout';
@@ -20,8 +20,8 @@ const AppRouter = () => {
       <Route path="/" element={<MainLayout />}>
         {/* Trang chủ */}
         <Route index element={<Home />} />
-        {/* Trang danh sách sản phẩm */}
-        <Route path="products" element={<Products />} />
+        {/* Trang danh sách sản phẩm theo loại sản phẩm */}
+        <Route path="products/:categoryId" element={<ProductsByCategory />} />
         {/* Chi tiết sản phẩm */}
         <Route path="/details/:id" element={<ProductDetail />} />
         {/* Trang đăng nhập */}

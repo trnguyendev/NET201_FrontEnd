@@ -16,6 +16,11 @@ const productService = {
     const url = `/Products/detail/${id}`;
     const response = await axiosClient.get(url);
     return response;
+  },
+
+  getProductsByCategory: async (id, page = 1, limit = 12) => {
+    const response = await axiosClient.get(`/Products/category/${id}?page=${page}&limit=${limit}`);
+    return response;
   }
 };
 
