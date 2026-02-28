@@ -59,7 +59,7 @@ const Header = () => {
             </li>
             <li className="nav-item">
               <Link className="nav-link text-white" to="/cart">
-                <i className="bi bi-cart3 fs-5 white"></i> Giỏ hàng
+                Giỏ hàng
               </Link>
             </li>
           </ul>

@@ -7,9 +7,8 @@ const productService = {
     return response;
   },
 
-  getHomeProducts: async () => {
-    const url = '/Products/home';
-    const response = await axiosClient.get(url);
+  getHomeProducts: async (page = 1, limit = 12) => {
+    const response = await axiosClient.get(`/Products/home?page=${page}&limit=${limit}`);
     return response;
   },
 
