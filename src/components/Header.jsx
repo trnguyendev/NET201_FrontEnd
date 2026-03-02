@@ -33,7 +33,7 @@ const Header = () => {
   const displayName = userName.includes('@') ? userName.split('@')[0] : userName;
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-sport-main py-2" data-bs-theme="dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-sport-main py-2 custom-navbar" data-bs-theme="dark">
       <div className="container">
         <Link className="navbar-brand fw-bold fs-4 text-white" to="/">
           TN Sport
