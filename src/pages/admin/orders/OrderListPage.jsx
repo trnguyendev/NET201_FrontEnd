@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import orderService from '../services/orderService';
+import { useEffect, useState } from 'react';
+import orderService from '@/services/orderService';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 

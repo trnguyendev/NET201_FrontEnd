@@ -1,39 +1,38 @@
-import { useEffect, useState, useCallback } from 'react';
-import CategoryTable from '../components/CategoryTable';
-import categoryService from '../services/categoryService';
-import CategoryModal from '../modals/CategoryModal';
+import { useEffect, useState } from 'react';
+import CategoryTable from './CategoryTable';
+import categoryService from '@/services/categoryService';
+import CategoryModal from './CategoryModal';
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
-const Category = () => {
+const CategoryPage = () => {
   const [categories, setCategories] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
-  // --- READ ---
-  const fetchCategories = useCallback(async () => {
-    try {
-      const data = await categoryService.getAllCategories();
-      setCategories(data);
-    } catch (err) {
-      toast.error('Không thể tải danh sách sản phẩm!');
-      console.error(err);
-    }
-  }, []);
-
   useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await categoryService.getAllCategories();
+        setCategories(data);
+      } catch (err) {
+        toast.error('Không thể tải danh sách sản phẩm!');
+        console.error(err);
+      }
+    };
+
     fetchCategories();
-  }, [fetchCategories]);
+  }, []);
 
   // --- ĐIỀU KHIỂN MODAL ---
   const handleOpenCreate = () => {
-    setSelectedCategory(null); // Gắn null để Modal biết là chức năng Thêm mới
+    setSelectedCategory(null);
     setShowModal(true);
   };
 
   const handleOpenEdit = category => {
-    setSelectedCategory(category); // Gắn data để Modal biết là chức năng Sửa
+    setSelectedCategory(category);
     setShowModal(true);
   };
 
@@ -127,4 +126,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default CategoryPage;

@@ -1,11 +1,10 @@
 import { useEffect, useState, useCallback } from 'react';
-import ProductTable from '../components/ProductTable';
-import ProductModal from '../modals/ProductModal';
-import productService from '../services/productService';
-// Import thêm service của Category và Brand để lấy dữ liệu cho Dropdown
-import categoryService from '../../categories/services/categoryService';
-import brandService from '../../brands/services/brandService';
-import ProductVariantModal from '../modals/ProductVariantModal';
+import ProductTable from './ProductTable';
+import ProductModal from './ProductModal';
+import productService from '@/services/productService';
+import categoryService from '@/services/categoryService';
+import brandService from '@/services/brandService';
+import ProductVariantModal from './ProductVariantModal';
 
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';

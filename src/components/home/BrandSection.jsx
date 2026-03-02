@@ -12,7 +12,7 @@ const BrandSection = () => {
     const fetchBrands = async () => {
       try {
         setLoading(true);
-        const data = await brandService.getAllBrand();
+        const data = await brandService.getAllBrands();
         setBrands(data);
       } catch (error) {
         console.error('Lỗi khi tải thương hiệu:', error);

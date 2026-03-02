@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Modal, Button, Form, Table } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import variantService from '../services/variantService';
-import sizeService from '../../sizes/services/sizeService';
-import colorService from '../../colors/services/colorService';
+import variantService from '@/services/variantService';
+import sizeService from '@/services/sizeService';
+import colorService from '@/services/colorService';
 
 function ProductVariantModal({ show, handleClose, product }) {
   const [variants, setVariants] = useState([]);

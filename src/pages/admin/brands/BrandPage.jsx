@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
-import BrandTable from '../components/BrandTable';
-import brandService from '../services/brandService';
-import BrandModal from '../modals/BrandModal';
+import BrandTable from './BrandTable';
+import brandService from '@/services/brandService';
+import BrandModal from './BrandModal';
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';

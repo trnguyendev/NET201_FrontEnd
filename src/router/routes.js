@@ -1,21 +1,23 @@
 import React from 'react';
 const Dashboard = React.lazy(() => import('@/pages/admin/dashboard/Dashboard'));
-const Category = React.lazy(() => import('@/pages/admin/categories/pages/Category'));
-const Brand = React.lazy(() => import('@/pages/admin/brands/pages/Brand'));
-const Size = React.lazy(() => import('@/pages/admin/sizes/pages/Size'));
-const ProductColor = React.lazy(() => import('@/pages/admin/colors/pages/ProductColor'));
-const Product = React.lazy(() => import('@/pages/admin/products/pages/Product'));
-const Order = React.lazy(() => import('@/pages/admin/order/pages/OrderList'));
+const CategoryPage = React.lazy(() => import('@/pages/admin/categories/CategoryPage'));
+const BrandPage = React.lazy(() => import('@/pages/admin/brands/BrandPage'));
+const SizePage = React.lazy(() => import('@/pages/admin/sizes/SizePage'));
+const ProductColorPage = React.lazy(() => import('@/pages/admin/colors/ProductColorPage'));
+const ProductPage = React.lazy(() => import('@/pages/admin/products/ProductPage'));
+const OrderListPage = React.lazy(() => import('@/pages/admin/orders/OrderListPage'));
+const UserPage = React.lazy(() => import('@/pages/admin/users/UserPage'));
 
 const routes = [
   { path: '', exact: true, name: 'Home' },
   { path: 'dashboard', name: 'Dashboard', element: Dashboard },
-  { path: 'categories', name: 'Category', element: Category },
-  { path: 'brands', name: 'Brand', element: Brand },
-  { path: 'sizes', name: 'Size', element: Size },
-  { path: 'colors', name: 'ProductColor', element: ProductColor },
-  { path: 'products', name: 'Product', element: Product },
-  { path: 'orders', name: 'Order', element: Order }
+  { path: 'categories', name: 'Category', element: CategoryPage },
+  { path: 'brands', name: 'Brand', element: BrandPage },
+  { path: 'sizes', name: 'Size', element: SizePage },
+  { path: 'colors', name: 'ProductColor', element: ProductColorPage },
+  { path: 'products', name: 'Product', element: ProductPage },
+  { path: 'orders', name: 'Order', element: OrderListPage },
+  { path: 'users', name: 'User', element: UserPage }
 ];
 
 export default routes;

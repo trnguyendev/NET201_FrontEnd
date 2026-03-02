@@ -7,14 +7,24 @@ const orderService = {
     return response;
   },
 
-  // Lấy đơn hàng của TÔI
   getMyOrders: async () => {
     return await axiosClient.get('/Orders/my-orders');
   },
 
-  // TÔI tự hủy đơn hàng
   cancelMyOrder: async id => {
     return await axiosClient.put(`/Orders/my-orders/${id}/cancel`);
+  },
+
+  getAllOrders: async () => {
+    const url = '/Orders';
+    return await axiosClient.get(url);
+  },
+
+  updateStatus: async (id, status) => {
+    const url = `/Orders/${id}/status`;
+    return await axiosClient.put(url, status, {
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 };
 export default orderService;

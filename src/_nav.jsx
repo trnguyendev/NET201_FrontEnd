@@ -59,13 +59,13 @@ const _nav = [
   {
     component: CNavGroup,
     name: 'Quản lý tài khoản',
-    to: '/admin/buttons',
+    to: '/admin/base',
     icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
         name: 'Quản lý người dùng',
-        to: '/admin/buttons/buttons'
+        to: '/admin/users'
       },
       {
         component: CNavItem,

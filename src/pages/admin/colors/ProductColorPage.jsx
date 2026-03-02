@@ -1,12 +1,12 @@
 import { useEffect, useState, useCallback } from 'react';
-import ProductColorTable from '../components/ProductColorTable';
-import ProductColorModal from '../modals/ProductColorModal';
-import colorService from '../services/colorService'; // IMPORT ĐÚNG SERVICE
+import ProductColorTable from './ProductColorTable';
+import ProductColorModal from './ProductColorModal';
+import colorService from '@/services/colorService';
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
-const ProductColor = () => {
+const ProductColorPage = () => {
   const [productColors, setProductColors] = useState([]); // Chuyển thành số nhiều cho dễ hiểu
   const [showModal, setShowModal] = useState(false);
   const [selectedProductColor, setSelectedProductColor] = useState(null);
@@ -14,7 +14,7 @@ const ProductColor = () => {
   // --- READ ---
   const fetchProductColors = useCallback(async () => {
     try {
-      const data = await colorService.getAllProductColors(); // SỬA: Gọi đúng hàm của colorService
+      const data = await colorService.getAllProductColors();
       setProductColors(data);
     } catch (err) {
       toast.error('Không thể tải danh sách màu sắc!');
@@ -120,4 +120,4 @@ const ProductColor = () => {
   );
 };
 
-export default ProductColor;
+export default ProductColorPage;

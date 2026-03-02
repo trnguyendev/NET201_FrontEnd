@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
-import SizeTable from '../components/SizeTable'; // Đổi tên import
-import SizeModal from '../modals/SizeModal'; // Đổi tên import
-import sizeService from '../services/sizeService';
+import SizeTable from './SizeTable';
+import SizeModal from './SizeModal';
+import sizeService from '@/services/sizeService';
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 const Size = () => {
   const [sizes, setSizes] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [selectedSize, setSelectedSize] = useState(null); // Đổi tên biến cho chuẩn (số ít)
+  const [selectedSize, setSelectedSize] = useState(null);
 
   // --- READ ---
   const fetchSizes = useCallback(async () => {
