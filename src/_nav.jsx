@@ -69,13 +69,8 @@ const _nav = [
       },
       {
         component: CNavItem,
-        name: 'Nhà phân phối',
-        to: '/admin/buttons/button-groups'
-      },
-      {
-        component: CNavItem,
         name: 'Tạo tài khoản',
-        to: '/admin/buttons/dropdowns'
+        to: '/admin/re'
       }
     ]
   }

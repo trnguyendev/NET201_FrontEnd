@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import UserTable from './UserTable';
 import userService from '@/services/userService';
 import Pagination from '@/components/common/Pagination';
+import EditUserModal from './EditUserModal';
 import { toast } from 'react-toastify';
 
 const UserPage = () => {
@@ -11,6 +12,9 @@ const UserPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const limit = 10;
+
+  const [showModal, setShowModal] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState(null);
 
   const fetchUsers = async page => {
     try {
@@ -26,38 +30,37 @@ const UserPage = () => {
     }
   };
 
-  // Gọi API mỗi khi trang hiện tại (currentPage) thay đổi
   useEffect(() => {
     fetchUsers(currentPage);
   }, [currentPage]);
 
-  // 3. Hàm xử lý chuyển trang
   const handlePageChange = newPage => {
     setCurrentPage(newPage);
   };
 
-  // 4. Hàm xử lý Khóa / Mở khóa tài khoản
   const handleToggleStatus = async id => {
-    // Hỏi xác nhận trước khi thực hiện
     if (!window.confirm('Bạn có chắc chắn muốn thay đổi trạng thái tài khoản này?')) return;
 
     try {
-      // Gọi API xuống Backend
       await userService.toggleUserStatus(id);
       toast.success('Cập nhật trạng thái thành công!');
 
       // Cập nhật lại state ảo trên giao diện để User đổi màu ngay lập tức (không cần gọi lại API get list)
       setUsers(users.map(user => (user.id === id ? { ...user, isActive: !user.isActive } : user)));
     } catch (error) {
+      console.log(error);
       toast.error('Có lỗi xảy ra khi cập nhật trạng thái!');
     }
   };
 
   const handleEdit = user => {
-    console.log('Dữ liệu user cần sửa:', user);
-    toast.info(`Đang mở form sửa cho: ${user.email}`);
+    setSelectedUserId(user.id);
+    setShowModal(true);
   };
 
+  const handleModalSuccess = () => {
+    fetchUsers(currentPage);
+  };
   return (
     <div className="container-fluid px-2">
       {loading ? (
@@ -71,6 +74,8 @@ const UserPage = () => {
           <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} isAdmin={true} />
         </>
       )}
+
+      <EditUserModal show={showModal} handleClose={() => setShowModal(false)} userId={selectedUserId} onSuccess={handleModalSuccess} />
     </div>
   );
 };
