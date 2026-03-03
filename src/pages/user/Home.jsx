@@ -86,8 +86,9 @@ const Home = () => {
                     </div>
                   )}
                 </div>
-
-                <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+                <div className="mt-4">
+                  <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+                </div>
               </>
             )}
           </section>
