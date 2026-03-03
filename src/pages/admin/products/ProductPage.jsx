@@ -5,6 +5,7 @@ import productService from '@/services/productService';
 import categoryService from '@/services/categoryService';
 import brandService from '@/services/brandService';
 import ProductVariantModal from './ProductVariantModal';
+import Pagination from '@/components/common/Pagination';
 
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
@@ -18,24 +19,50 @@ const Product = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showVariantModal, setShowVariantModal] = useState(false);
   const [productForVariant, setProductForVariant] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const limit = 20;
 
-  // --- READ ---
-  const fetchData = useCallback(async () => {
+  useEffect(() => {
+    const fetchReferenceData = async () => {
+      try {
+        const [categoriesData, brandsData] = await Promise.all([categoryService.getAllCategories(), brandService.getAllBrands()]);
+        // Tùy backend của bạn trả về mảng hay PageResult, nhớ bóc tách cho đúng
+        setCategories(categoriesData);
+        setBrands(brandsData);
+      } catch (err) {
+        console.error(err);
+        toast.error('Không thể tải dữ liệu danh mục và thương hiệu!');
+      }
+    };
+    fetchReferenceData();
+  }, []); // Mảng rỗng = Chỉ chạy 1 lần
+
+  // --- LUỒNG 2: LOAD PRODUCTS (Chạy khi đổi trang hoặc Thêm/Sửa/Xóa) ---
+  const fetchProducts = useCallback(async page => {
     try {
-      // Gọi cả 3 API cùng lúc cho nhanh
-      const [productsData, categoriesData, brandsData] = await Promise.all([productService.getAllProducts(), categoryService.getAllCategories(), brandService.getAllBrands()]);
-      setProducts(productsData);
-      setCategories(categoriesData);
-      setBrands(brandsData);
+      // Nhớ cập nhật productService.getAllProducts(page, limit) nhé
+      const data = await productService.getAllProducts(page, limit);
+      const items = data.items || [];
+      const tPages = data.totalPages || 0;
+
+      setProducts(items);
+      setTotalPages(tPages);
     } catch (err) {
-      toast.error('Không thể tải dữ liệu!');
+      toast.error('Không thể tải danh sách sản phẩm!');
       console.error(err);
     }
   }, []);
 
+  // Gọi fetchProducts mỗi khi currentPage thay đổi
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    fetchProducts(currentPage);
+  }, [currentPage, fetchProducts]);
+
+  // Hàm xử lý đổi trang
+  const handlePageChange = newPage => {
+    setCurrentPage(newPage);
+  };
 
   // --- ĐIỀU KHIỂN MODAL ---
   const handleOpenCreate = () => {
@@ -57,6 +84,7 @@ const Product = () => {
     setProductForVariant(product);
     setShowVariantModal(true);
   };
+
   // --- CREATE & UPDATE ---
   const handleSubmitForm = async data => {
     try {
@@ -78,9 +106,10 @@ const Product = () => {
       } else {
         await productService.createProduct(formData);
         toast.success('Thêm sản phẩm thành công!');
+        setCurrentPage(1); // Trở về trang 1 để thấy sản phẩm vừa thêm
       }
 
-      fetchData(); // Load lại bảng
+      fetchProducts(currentPage); // 👉 Load lại danh sách sản phẩm
       handleCloseModal();
     } catch (error) {
       let message = 'Có lỗi xảy ra!';
@@ -110,8 +139,8 @@ const Product = () => {
       if (result.isConfirmed) {
         try {
           await productService.deleteProduct(id);
-          setProducts(prev => prev.filter(p => p.id !== id));
           toast.success('Xóa sản phẩm thành công!');
+          fetchProducts(currentPage);
         } catch (error) {
           toast.error('Không thể xóa sản phẩm này!');
         }
@@ -137,7 +166,12 @@ const Product = () => {
         </div>
       </div>
 
-      <ProductTable products={products} onEdit={handleOpenEdit} onDelete={handleDelete} onManageVariants={handleOpenVariants} />
+      {/* 👉 Nhớ truyền currentPage và limit xuống ProductTable để làm Số thứ tự (STT) */}
+      <ProductTable products={products} currentPage={currentPage} limit={limit} onEdit={handleOpenEdit} onDelete={handleDelete} onManageVariants={handleOpenVariants} />
+
+      {/* 👉 Gọi thanh Pagination */}
+      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} isAdmin={true} />
+
       <ProductModal show={showModal} initialData={selectedProduct} categories={categories} brands={brands} onSubmit={handleSubmitForm} handleClose={handleCloseModal} />
       <ProductVariantModal show={showVariantModal} handleClose={() => setShowVariantModal(false)} product={productForVariant} />
     </>

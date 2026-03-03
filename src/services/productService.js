@@ -1,8 +1,8 @@
 import axiosClient from '@/api/axiosClient';
 
 const productService = {
-  getAllProducts: async () => {
-    const url = '/Products';
+  getAllProducts: async (page = 1, limit = 20) => {
+    const url = `/Products?page=${page}&limit=${limit}`;
     const response = await axiosClient.get(url);
     return response;
   },

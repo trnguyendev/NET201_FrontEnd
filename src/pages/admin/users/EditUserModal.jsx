@@ -28,8 +28,9 @@ const EditUserModal = ({ show, handleClose, userId, onSuccess }) => {
             role: data.role || 'User' // Mặc định là User nếu chưa có quyền
           });
         } catch (error) {
+          console.log(error);
           toast.error('Không thể tải chi tiết người dùng!');
-          handleClose(); // Đóng modal nếu lỗi
+          handleClose();
         } finally {
           setFetching(false);
         }
@@ -130,7 +131,7 @@ const EditUserModal = ({ show, handleClose, userId, onSuccess }) => {
             </div>
 
             {/* Footer */}
-            <div className="modal-footer bg-light">
+            <div className="modal-footer">
               <button type="button" className="btn btn-secondary" onClick={handleClose} disabled={loading}>
                 Hủy bỏ
               </button>
