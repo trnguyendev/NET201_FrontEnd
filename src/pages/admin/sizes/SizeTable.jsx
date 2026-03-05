@@ -7,7 +7,7 @@ const SizeTable = ({ sizes, onEdit, onDelete }) => {
             <th className="bg-primary text-white">ID</th>
             {/* Đã sửa tiêu đề cột */}
             <th className="bg-primary text-white">Kích thước (Size)</th>
-            <th className="bg-primary text-white">Kiểu (Loại)</th>
+            <th className="bg-primary text-white">Loại sản phẩm</th>
             <th className="bg-primary text-white">Hành động</th>
           </tr>
         </thead>
@@ -17,7 +17,7 @@ const SizeTable = ({ sizes, onEdit, onDelete }) => {
               <tr key={size.id} className="align-middle">
                 <td className="text-center">{size.id}</td>
                 <td className="text-center fw-bold">{size.name}</td> {/* Thêm in đậm cho dễ nhìn */}
-                <td className="text-center">{size.type}</td>
+                <td className="text-center">{size.categoryName}</td>
                 <td className="text-center">
                   <div className="btn-group">
                     {/* Nút Sửa: Truyền toàn bộ object size lên cha */}

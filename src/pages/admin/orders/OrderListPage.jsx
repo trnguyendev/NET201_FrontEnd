@@ -73,7 +73,6 @@ const OrderList = () => {
 
   return (
     <div className="container-fluid px-4">
-      <h1 className="mt-4">Quản lý đơn hàng</h1>
       <div className="card mb-4 shadow-sm">
         <div className="card-header bg-dark text-white">
           <i className="bi bi-table me-1"></i> Danh sách đơn hàng mới nhất
@@ -81,15 +80,15 @@ const OrderList = () => {
         <div className="card-body">
           <div className="table-responsive">
             <table className="table table-hover table-bordered align-middle">
-              <thead className="table-light">
+              <thead className="">
                 <tr>
-                  <th>Mã ĐH</th>
-                  <th>Khách hàng</th>
-                  <th>Số điện thoại</th>
-                  <th>Tổng tiền</th>
-                  <th>Ngày đặt</th>
-                  <th>Trạng thái</th>
-                  <th className="text-center">Thao tác</th>
+                  <th className="bg-primary">Mã ĐH</th>
+                  <th className="bg-primary">Khách hàng</th>
+                  <th className="bg-primary">Số điện thoại</th>
+                  <th className="bg-primary">Tổng tiền</th>
+                  <th className="bg-primary">Ngày đặt</th>
+                  <th className="bg-primary">Trạng thái</th>
+                  <th className="bg-primary text-center">Thao tác</th>
                 </tr>
               </thead>
               <tbody>

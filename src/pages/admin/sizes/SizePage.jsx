@@ -2,16 +2,18 @@ import { useEffect, useState, useCallback } from 'react';
 import SizeTable from './SizeTable';
 import SizeModal from './SizeModal';
 import sizeService from '@/services/sizeService';
+import categoryService from '@/services/categoryService'; // 👉 Import thêm service Category
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
 const Size = () => {
   const [sizes, setSizes] = useState([]);
+  const [categories, setCategories] = useState([]); // 👉 Thêm state lưu danh mục
   const [showModal, setShowModal] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
 
-  // --- READ ---
+  // --- READ SIZES ---
   const fetchSizes = useCallback(async () => {
     try {
       const data = await sizeService.getAllSizes();
@@ -22,9 +24,21 @@ const Size = () => {
     }
   }, []);
 
+  // --- READ CATEGORIES (Chỉ lấy 1 lần) ---
+  const fetchCategories = useCallback(async () => {
+    try {
+      const data = await categoryService.getAllCategories();
+      // Tùy backend trả về mảng trực tiếp hay PageResult, nhớ hứng cho chuẩn
+      setCategories(data.items || data || []);
+    } catch (err) {
+      toast.error('Không thể tải danh sách danh mục!');
+    }
+  }, []);
+
   useEffect(() => {
     fetchSizes();
-  }, [fetchSizes]);
+    fetchCategories(); // 👉 Gọi hàm lấy danh mục khi component mount
+  }, [fetchSizes, fetchCategories]);
 
   // --- ĐIỀU KHIỂN MODAL ---
   const handleOpenCreate = () => {
@@ -45,7 +59,6 @@ const Size = () => {
   // --- CREATE & UPDATE ---
   const handleSubmitForm = async data => {
     try {
-      // VÌ SIZE KHÔNG CÓ ẢNH -> GỬI THẲNG BIẾN `data` LÀ XONG (Không dùng FormData)
       if (selectedSize) {
         await sizeService.updateSize(selectedSize.id, data);
         toast.success('Cập nhật size thành công!');
@@ -84,7 +97,6 @@ const Size = () => {
       if (result.isConfirmed) {
         try {
           await sizeService.deleteSize(id);
-
           setSizes(prev => prev.filter(s => s.id !== id));
           toast.success('Xóa size thành công!');
         } catch (error) {
@@ -114,7 +126,9 @@ const Size = () => {
       </div>
 
       <SizeTable sizes={sizes} onEdit={handleOpenEdit} onDelete={handleDelete} />
-      <SizeModal show={showModal} initialData={selectedSize} onSubmit={handleSubmitForm} handleClose={handleCloseModal} />
+
+      {/* 👉 Truyền danh sách categories xuống Modal */}
+      <SizeModal show={showModal} initialData={selectedSize} categories={categories} onSubmit={handleSubmitForm} handleClose={handleCloseModal} />
     </>
   );
 };

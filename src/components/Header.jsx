@@ -12,7 +12,6 @@ const Header = () => {
     const fetchCategories = async () => {
       try {
         const data = await categoryService.getAllCategories();
-        // Giả sử API trả về mảng: [{ id: 1, name: 'Quần áo' }, { id: 2, name: 'Giày' }]
         setCategories(data);
       } catch (error) {
         console.error('Lỗi tải danh mục trên Header:', error);
